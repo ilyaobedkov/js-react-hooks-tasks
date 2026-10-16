@@ -1,10 +1,8 @@
 import React, { useState, useCallback, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-
-// BEGIN (write your solution here)
-
-// END
-
+const Factorial = memo(({ number, getFactorial }) => (
+  <div>{`Factorial of ${number} is ${getFactorial(number)}`}</div>
+));
 const App = () => {
   const { t, i18n } = useTranslation();
   const [value, setValue] = useState(0);
@@ -12,21 +10,15 @@ const App = () => {
     const lang = e.target.dataset.testid;
     i18n.changeLanguage(lang);
   };
-
   const factorialFunc = (number) => {
     if (number <= 0) return 1;
     return number * factorialFunc(number - 1);
   };
-
-  // BEGIN (write your solution here)
-
-  // END
-
+  const getFactorial = useCallback((number) => factorialFunc(number), []);
   const getClassName = (currLang) => {
     const className = i18n.language === currLang ? 'btn btn-primary' : 'btn btn-outline-primary';
     return className;
   };
-
   return (
     <div className="App">
       <div className="btn-group mb-3" role="group">
@@ -58,5 +50,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;

@@ -1,13 +1,8 @@
 import React, { useContext } from 'react';
 import { ButtonGroup, ToggleButton } from 'react-bootstrap';
-
 import ThemeContext from './contexts';
-
 const ThemeSwitcher = () => {
-  // BEGIN (write your solution here)
-
-  // END
-
+  const { themes, theme, changeTheme: setTheme } = useContext(ThemeContext);
   return (
     <ButtonGroup className="mt-2">
       {themes.map((curTheme) => (
@@ -26,5 +21,4 @@ const ThemeSwitcher = () => {
     </ButtonGroup>
   );
 };
-
 export default ThemeSwitcher;

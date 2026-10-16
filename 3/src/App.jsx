@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
-
 import Home from './Home.jsx';
 import Profile from './Profile.jsx';
 import ThemeSwitcher from './ThemeSwitcher.jsx';
 import ThemeContext from './contexts';
-
 const themes = [
   {
     id: 1,
@@ -23,13 +21,17 @@ const themes = [
     className: 'dark-blue',
   },
 ];
-
 const ThemeProvider = ({ children }) => {
-  // BEGIN (write your solution here)
-
-  // END
+  const [theme, setTheme] = useState(themes[0]);
+  const changeTheme = (newTheme) => {
+    setTheme(newTheme);
+  };
+  return (
+    <ThemeContext.Provider value={{ themes, theme, changeTheme }}>
+      <div className={theme.className}>{children}</div>
+    </ThemeContext.Provider>
+  );
 };
-
 const App = () => (
   <ThemeProvider>
     <Tabs className="mb-3">
@@ -43,5 +45,4 @@ const App = () => (
     <ThemeSwitcher />
   </ThemeProvider>
 );
-
 export default App;
